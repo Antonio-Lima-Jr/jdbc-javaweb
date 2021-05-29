@@ -29,4 +29,10 @@ class SingleConnectionTest {
     List<User> userList = new UserDAO().listar();
     userList.forEach(System.out::println);
   }
+
+  @Test
+  public void buscarById() {
+    User user = new UserDAO().buscarById(3L);
+    System.out.println(user);
+  }
 }

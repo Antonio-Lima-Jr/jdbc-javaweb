@@ -78,4 +78,32 @@ public class UserDAO {
     return userList;
   }
 
+  /**
+   * Buscar usuários por id.
+   *
+   * @param id Parâmetro para a busca no bando
+   * @return Retorna um objeto do tipo user que coincidir com o parâmetro passado
+   */
+  public User buscarById(Long id) {
+    User user = null;
+    String sql = "SELECT * FROM public.userposjava WHERE id =" + id;
+
+    try {
+      PreparedStatement readUser = connection.prepareStatement(sql);
+      ResultSet result = readUser.executeQuery();
+
+      while (result.next()) {
+        user = new User(
+            result.getLong("id"),
+            result.getString("nome"),
+            result.getString("email")
+        );
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return user;
+  }
+
 }
