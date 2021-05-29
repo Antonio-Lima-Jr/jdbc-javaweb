@@ -31,12 +31,11 @@ public class UserDAO {
    * @param user Objeto usuário utilizado para passar para query de INSERÇÃO
    */
   public void salvar(User user) {
-    String sql = "INSERT INTO public.userposjava(id, nome, email) VALUES (?, ?, ?)";
+    String sql = "INSERT INTO public.userposjava(nome, email) VALUES (?, ?)";
     try {
       PreparedStatement createUser = connection.prepareStatement(sql);
-      createUser.setLong(1, user.getId());
-      createUser.setString(2, user.getNome());
-      createUser.setString(3, user.getEmail());
+      createUser.setString(1, user.getNome());
+      createUser.setString(2, user.getEmail());
       createUser.execute();
       connection.commit();
     } catch (SQLException e) {
