@@ -4,8 +4,11 @@ import br.com.javaweb.jdbc.dao.UserDAO;
 import br.com.javaweb.jdbc.model.User;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 /**
- * Class Description.
+ * Classe de tests simples sem asserts por enquanto,
+ * apenas para verificar funcionalidade.
  *
  * @author Antônio Lima Jr
  * @project jdbc-javaweb
@@ -19,7 +22,11 @@ class SingleConnectionTest {
     UserDAO userDAO = new UserDAO();
 
     userDAO.salvar(user);
-
   }
 
+  @Test
+  public void listarUsers() {
+    List<User> userList = new UserDAO().listar();
+    userList.forEach(System.out::println);
+  }
 }
