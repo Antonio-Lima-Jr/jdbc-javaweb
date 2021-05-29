@@ -46,4 +46,9 @@ class SingleConnectionTest {
     userDAO.atualizarNameById(user);
     System.out.println(user);
   }
+
+  @Test
+  public void deleteUser() {
+    new UserDAO().deletarById(6L);
+  }
 }

@@ -129,4 +129,20 @@ public class UserDAO {
       e.printStackTrace();
     }
   }
+
+  /**
+   * Método com a função de deletar registro de usuário no DB.
+   *
+   * @param id Parâmetro de busca para exclusão do DB
+   */
+  public void deletarById(Long id) {
+    try {
+      String sql = "DELETE FROM userposjava WHERE id =" + id;
+      PreparedStatement statementDel = connection.prepareStatement(sql);
+      statementDel.execute();
+      connection.commit();
+    } catch (SQLException throwable) {
+      throwable.printStackTrace();
+    }
+  }
 }
