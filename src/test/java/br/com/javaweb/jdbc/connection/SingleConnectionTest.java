@@ -1,5 +1,7 @@
 package br.com.javaweb.jdbc.connection;
 
+import br.com.javaweb.jdbc.dao.UserDAO;
+import br.com.javaweb.jdbc.model.User;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -12,8 +14,11 @@ import org.junit.jupiter.api.Test;
 class SingleConnectionTest {
 
   @Test
-  public void initBanco() {
-    System.out.println(SingleConnection.getConnection());
+  public void saveUser() {
+    User user = new User(6L, "João Pereira", "emailjoao@email.com");
+    UserDAO userDAO = new UserDAO();
+
+    userDAO.salvar(user);
 
   }
 

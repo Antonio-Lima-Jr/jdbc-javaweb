@@ -11,9 +11,9 @@ import java.sql.DriverManager;
  * @created 28/mai/2021 - 13:48
  */
 public class SingleConnection {
-  private static String url = "jdbc:postgresql://localhost:5432/posjava";
-  private static String password = "root";
-  private static String user = "root";
+  private static final String URL = "jdbc:postgresql://localhost:5432/posjava";
+  private static final String PASSWORD = "root";
+  private static final String USER = "root";
   private static Connection connection = null;
 
   static {
@@ -28,7 +28,7 @@ public class SingleConnection {
     try {
       if (connection == null) {
         Class.forName("org.postgresql.Driver");
-        connection = DriverManager.getConnection(url, user, password);
+        connection = DriverManager.getConnection(URL, USER, PASSWORD);
         connection.setAutoCommit(false);
       }
     } catch (Exception e) {
