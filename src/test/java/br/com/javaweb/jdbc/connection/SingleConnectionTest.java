@@ -35,4 +35,15 @@ class SingleConnectionTest {
     User user = new UserDAO().buscarById(3L);
     System.out.println(user);
   }
+
+  @Test
+  public void atualizarNomeUser() {
+    UserDAO userDAO = new UserDAO();
+    User user = userDAO.buscarById(3L);
+    System.out.println(user);
+    user.setNome("Joãozinho");
+
+    userDAO.atualizarNameById(user);
+    System.out.println(user);
+  }
 }
