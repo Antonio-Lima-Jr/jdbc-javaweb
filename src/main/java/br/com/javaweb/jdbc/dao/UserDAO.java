@@ -106,4 +106,28 @@ public class UserDAO {
     return user;
   }
 
+  /**
+   * Método com a função de atualizar o
+   * nome de um usuário buscando por seu id.
+   *
+   * @param user Objeto user que vai ser alterado no DB
+   */
+  public void atualizarNameById(User user) {
+    String sql = "UPDATE public.userposjava SET  nome=? WHERE id=" + user.getId();
+
+    try {
+      PreparedStatement statement = connection.prepareStatement(sql);
+      statement.setString(1, user.getNome());
+      statement.execute();
+      connection.commit();
+
+    } catch (SQLException e) {
+      try {
+        connection.rollback();
+      } catch (SQLException throwable) {
+        throwable.printStackTrace();
+      }
+      e.printStackTrace();
+    }
+  }
 }
