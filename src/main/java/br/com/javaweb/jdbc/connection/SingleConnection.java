@@ -13,7 +13,7 @@ import java.sql.DriverManager;
 public class SingleConnection {
   private static final String URL = "jdbc:postgresql://localhost:5432/posjava";
   private static final String PASSWORD = "root";
-  private static final String USER = "root";
+  private static final String USER = "postgres";
   private static Connection connection = null;
 
   static {
