@@ -1,6 +1,7 @@
 package br.com.javaweb.jdbc.dao;
 
 import br.com.javaweb.jdbc.connection.SingleConnection;
+import br.com.javaweb.jdbc.model.Telefone;
 import br.com.javaweb.jdbc.model.User;
 
 import java.sql.Connection;
@@ -140,6 +141,20 @@ public class UserDAO {
       String sql = "DELETE FROM userposjava WHERE id =" + id;
       PreparedStatement statementDel = connection.prepareStatement(sql);
       statementDel.execute();
+      connection.commit();
+    } catch (SQLException throwable) {
+      throwable.printStackTrace();
+    }
+  }
+
+  public void salvarTelefone(Telefone telefone){
+    try {
+      String sql = "INSERT INTO public.telefoneuser(numero, tipo, usuariopessoa) VALUES (?, ?, ?);";
+      PreparedStatement statement = connection.prepareStatement(sql);
+      statement.setString(1, telefone.getNumero());
+      statement.setString(2, telefone.getTipo());
+      statement.setLong(3, telefone.getUsuario());
+      statement.execute();
       connection.commit();
     } catch (SQLException throwable) {
       throwable.printStackTrace();

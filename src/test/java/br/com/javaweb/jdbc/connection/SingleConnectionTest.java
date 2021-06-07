@@ -1,7 +1,9 @@
 package br.com.javaweb.jdbc.connection;
 
 import br.com.javaweb.jdbc.dao.UserDAO;
+import br.com.javaweb.jdbc.model.Telefone;
 import br.com.javaweb.jdbc.model.User;
+import org.checkerframework.common.value.qual.StaticallyExecutable;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -50,5 +52,12 @@ class SingleConnectionTest {
   @Test
   public void deleteUser() {
     new UserDAO().deletarById(6L);
+  }
+
+  @Test
+  public void testeInsertTelefone(){
+    Telefone telefone = new Telefone("61 3358 2323","Residencial", 1L);
+    UserDAO userDAO = new UserDAO();
+    userDAO.salvarTelefone(telefone);
   }
 }
