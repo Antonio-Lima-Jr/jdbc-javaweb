@@ -1,6 +1,7 @@
 package br.com.javaweb.jdbc.dao;
 
 import br.com.javaweb.jdbc.connection.SingleConnection;
+import br.com.javaweb.jdbc.model.BeanUserFone;
 import br.com.javaweb.jdbc.model.Telefone;
 import br.com.javaweb.jdbc.model.User;
 
@@ -159,5 +160,29 @@ public class UserDAO {
     } catch (SQLException throwable) {
       throwable.printStackTrace();
     }
+  }
+
+  public List<BeanUserFone> listaUserFone(Long idUser){
+    List<BeanUserFone> beanUserFones = new ArrayList<>();
+
+    String sql = "select nome, numero, email from telefoneuser as fone";
+    sql += " inner join userposjava as userp";
+    sql += " on fone.usuariopessoa = userp.id";
+    sql += " where userp.id = " + idUser;
+
+    try {
+      PreparedStatement statement = connection.prepareStatement(sql);
+      ResultSet resultSet = statement.executeQuery();
+      while (resultSet.next()){
+        BeanUserFone beanUserFone = new BeanUserFone(
+            resultSet.getString("nome"),
+            resultSet.getString("numero"),
+            resultSet.getString("email"));
+        beanUserFones.add(beanUserFone);
+      }
+    } catch (SQLException throwable) {
+      throwable.printStackTrace();
+    }
+    return beanUserFones;
   }
 }

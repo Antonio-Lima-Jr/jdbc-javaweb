@@ -1,11 +1,13 @@
 package br.com.javaweb.jdbc.connection;
 
 import br.com.javaweb.jdbc.dao.UserDAO;
+import br.com.javaweb.jdbc.model.BeanUserFone;
 import br.com.javaweb.jdbc.model.Telefone;
 import br.com.javaweb.jdbc.model.User;
 import org.checkerframework.common.value.qual.StaticallyExecutable;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,5 +61,17 @@ class SingleConnectionTest {
     Telefone telefone = new Telefone("61 3358 2323","Residencial", 1L);
     UserDAO userDAO = new UserDAO();
     userDAO.salvarTelefone(telefone);
+  }
+
+  @Test
+  public void testeCarregarFonesUser(){
+    UserDAO userDAO = new UserDAO();
+    List<BeanUserFone> beanUserFones = userDAO.listaUserFone(1L);
+
+    for (BeanUserFone beanUserFone : beanUserFones){
+      System.out.println(beanUserFone);
+      System.out.println("----------------");
+    }
+
   }
 }
