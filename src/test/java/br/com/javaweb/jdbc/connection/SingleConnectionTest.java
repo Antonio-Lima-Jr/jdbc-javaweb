@@ -72,6 +72,10 @@ class SingleConnectionTest {
       System.out.println(beanUserFone);
       System.out.println("----------------");
     }
-
+  }
+  @Test
+  public void testeDeleteUserFone(){
+    UserDAO userDAO = new UserDAO();
+    userDAO.deleteFonesPorUser(1L);
   }
 }
